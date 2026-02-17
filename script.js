@@ -1,26 +1,50 @@
-// script.js
+// Complete JavaScript Code for Charts and Data Rendering
 
-// Function to get the current date and time in the specified format
-function getCurrentDateTime() {
-    const date = new Date();
-    return date.toISOString().slice(0, 19).replace('T', ' ');
+// Dummy Data
+const dummyData = [
+    { year: 2022, value: 120 },
+    { year: 2023, value: 150 },
+    { year: 2024, value: 170 },
+    { year: 2025, value: 200 },
+];
+
+// Function to render charts using Chart.js (or another charting library)
+function renderCharts(data) {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.map(item => item.year),
+            datasets: [{
+                label: 'Sample Data',
+                data: data.map(item => item.value),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                tension: 0.1,
+            }],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
-// Function to handle dummy data
-function handleDummyData() {
-    const dummyData = [
-        { id: 1, name: 'Sample Item 1' },
-        { id: 2, name: 'Sample Item 2' },
-        { id: 3, name: 'Sample Item 3' }
-    ];
-    console.log('Dummy Data:', dummyData);
+// Interactive Features
+function addEventListeners() {
+    document.getElementById('reloadData').addEventListener('click', function() {
+        renderCharts(dummyData); // Reload charts with dummy data
+    });
 }
 
-// Interactive function
-function interactiveFunctionality() {
-    console.log('Current Date and Time (UTC):', getCurrentDateTime());
-    handleDummyData();
+// Initialize the application
+function init() {
+    renderCharts(dummyData);
+    addEventListeners();
 }
 
-// Execute interactive functionality
-interactiveFunctionality();
+// Document Ready
+document.addEventListener('DOMContentLoaded', init);
