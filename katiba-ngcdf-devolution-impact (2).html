@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katiba Institute Impact — Challenging the NG-CDF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--kg:#9ACD32;--ky:#FFD700;--ko:#FF8C42;--kr:#FF6B6B;--kp:#A78BFA;--kb:#60A5FA;--bg:#111710;--card:rgba(28,36,22,0.9);--bdr:rgba(154,205,50,0.12);--t1:#F0F0E0;--t2:#B8C8A0;--t3:#8A9670;--t4:#5C6E48}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 10% 0%,rgba(255,140,66,0.04),transparent 50%),radial-gradient(ellipse at 90% 100%,rgba(154,205,50,0.04),transparent 50%);pointer-events:none;z-index:0}
+.d{max-width:1100px;margin:0 auto;padding:28px 20px;position:relative;z-index:1}
+.hdr{text-align:center;padding:44px 0 32px}
+.badge{display:inline-block;background:rgba(255,140,66,0.1);border:1px solid rgba(255,140,66,0.25);color:var(--ko);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:18px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(24px,4.5vw,40px);font-weight:400;line-height:1.2;margin-bottom:14px}
+h1 em{font-style:normal;color:var(--ko)}
+.sub{font-size:14px;color:var(--t2);max-width:720px;margin:0 auto 14px;font-weight:300;line-height:1.7}
+.ref{font-size:11px;color:var(--t4);letter-spacing:.5px;max-width:750px;margin:0 auto}
+.status-bar{display:inline-flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;justify-content:center}
+.sbar{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;padding:5px 14px;border-radius:8px}
+.sbar.won{background:rgba(154,205,50,0.12);border:1px solid rgba(154,205,50,0.25);color:var(--kg)}
+.sbar.lost{background:rgba(255,107,107,0.12);border:1px solid rgba(255,107,107,0.25);color:var(--kr)}
+.sbar.pend{background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.25);color:var(--kb)}
+.tabs{display:flex;gap:4px;justify-content:center;background:rgba(255,140,66,0.05);border-radius:12px;padding:4px;max-width:780px;margin:0 auto 32px;flex-wrap:wrap}
+.tab{flex:1;padding:10px 8px;border:none;border-radius:10px;cursor:pointer;font-size:11px;font-weight:600;font-family:'Outfit',sans-serif;transition:all .3s;background:transparent;color:var(--t3);min-width:70px}
+.tab.on{background:rgba(255,140,66,0.18);color:var(--ko)}
+.tab:hover:not(.on){color:var(--t2)}
+.pn{display:none}.pn.on{display:block;animation:fu .4s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.st{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:18px;padding-left:14px;border-left:3px solid var(--ko)}
+.st.green{border-left-color:var(--kg)}.st.red{border-left-color:var(--kr)}.st.gold{border-left-color:var(--ky)}.st.blue{border-left-color:var(--kb)}.st.purple{border-left-color:var(--kp)}
+.cb{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:22px 20px;position:relative;overflow:hidden;transition:border-color .3s}
+.cb:hover{border-color:rgba(255,140,66,0.25)}
+.bigcount{text-align:center;padding:44px 20px;margin-bottom:28px;background:linear-gradient(135deg,rgba(255,140,66,0.08),rgba(255,215,0,0.04));border:1px solid rgba(255,140,66,0.2);border-radius:16px}
+.bigcount .bclbl{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ko);margin-bottom:8px}
+.bigcount .bcnum{font-family:'Playfair Display',serif;font-size:clamp(36px,8vw,68px);color:var(--ky);line-height:1;margin-bottom:6px}
+.bigcount .bcsub{font-size:13px;color:var(--t2);font-weight:300;line-height:1.6;max-width:600px;margin:0 auto}
+.ticker{text-align:center;padding:24px 20px;margin-bottom:28px;background:rgba(255,107,107,0.05);border:1px solid rgba(255,107,107,0.15);border-radius:12px}
+.ticker .tlbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--kr);margin-bottom:6px}
+.ticker .tnum{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,44px);color:var(--kr);line-height:1;margin-bottom:4px}
+.ticker .tsub{font-size:11px;color:var(--t3);font-weight:300}
+.barchart{margin-bottom:28px}
+.barrow{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.barlbl{font-size:10px;color:var(--t3);min-width:54px;text-align:right;font-weight:500}
+.barwrap{flex:1;background:rgba(154,205,50,0.05);border-radius:4px;height:22px;position:relative;overflow:hidden}
+.barfill{height:100%;border-radius:4px;transition:width 1.5s ease;width:0}
+.barval{font-size:10px;color:var(--t2);min-width:50px;font-weight:500}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:28px}
+.mc{text-align:center;padding:18px 12px}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ko),var(--ky))}
+.mc .ico{font-size:22px;margin-bottom:5px}.mc .num{font-family:'Playfair Display',serif;font-size:22px;color:var(--ko);line-height:1;margin-bottom:3px}.mc .lbl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t2);margin-bottom:2px}.mc .det{font-size:9px;color:var(--t4);font-weight:300}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:28px}
+.ic{padding:24px;border-left:4px solid var(--ko)}
+.ic .ilbl{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:4px;color:var(--ko)}
+.ic .inum{font-family:'Playfair Display',serif;font-size:30px;color:var(--ky);line-height:1;margin-bottom:8px}
+.ic .itxt{font-size:12px;color:var(--t3);font-weight:300;line-height:1.6}
+.ic .ireal{margin-top:10px;background:rgba(255,140,66,0.06);border:1px solid rgba(255,140,66,0.12);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--t2);font-weight:300;line-height:1.6}
+.ic .ireal strong{color:var(--ko);font-weight:600}
+.compbar{margin-bottom:28px}
+.comprow{margin-bottom:14px}
+.comphead{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
+.comphead .cn{color:var(--t2);font-weight:500}
+.comphead .cv{color:var(--ky);font-weight:600;font-family:'Playfair Display',serif}
+.comptrack{height:28px;background:rgba(154,205,50,0.05);border-radius:6px;overflow:hidden}
+.compfill{height:100%;border-radius:6px;transition:width 2s ease;width:0}
+.compnote{font-size:9px;color:var(--t4);margin-top:2px;font-weight:300}
+.krole{background:linear-gradient(135deg,rgba(154,205,50,0.06),rgba(255,140,66,0.04));border:1px solid rgba(154,205,50,0.2);border-radius:14px;padding:28px;margin-bottom:28px;position:relative}
+.krole::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--kg),var(--ko))}
+.krole .ktitle{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;color:var(--kg)}
+.krole p{font-size:13px;color:var(--t2);font-weight:300;line-height:1.7;margin-bottom:10px}
+.krole .khi{color:var(--ko);font-weight:600}
+.kfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:16px}
+.kf{background:rgba(154,205,50,0.05);border:1px solid rgba(154,205,50,0.12);border-radius:8px;padding:14px;text-align:center}
+.kf .kfn{font-family:'Playfair Display',serif;font-size:22px;color:var(--kg);line-height:1;margin-bottom:4px}
+.kf .kfl{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--t3)}
+.jy{position:relative;padding-left:34px;margin-bottom:28px}
+.jy::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--t4),var(--ko),var(--kg),var(--kr),var(--kb))}
+.js{margin-bottom:24px;position:relative}
+.jd{position:absolute;left:-28px;top:3px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2.5px solid var(--ko)}
+.jd.win{background:var(--kg);border-color:var(--kg);box-shadow:0 0 14px rgba(154,205,50,0.45)}.jd.loss{background:var(--kr);border-color:var(--kr);box-shadow:0 0 10px rgba(255,107,107,0.3)}.jd.blue{border-color:var(--kb);background:var(--kb);box-shadow:0 0 10px rgba(96,165,250,0.3)}.jd.gold{background:var(--ky);border-color:var(--ky);box-shadow:0 0 10px rgba(255,215,0,0.3)}.jd.or{border-color:var(--ko)}
+.jp{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px}
+.jt{font-size:15px;font-weight:600;color:var(--t1);margin-bottom:3px}
+.jx{font-size:13px;color:var(--t3);font-weight:300;line-height:1.6}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:28px}
+.fc{padding:22px}.fc .fi{font-size:24px;margin-bottom:8px}.fc .ft{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:6px}.fc .fd{font-size:12px;color:var(--t3);font-weight:300;line-height:1.6}
+.rl{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.ri{padding:20px 22px;border-left:4px solid var(--ko)}
+.ri.win{border-left-color:var(--kg)}.ri.loss{border-left-color:var(--kr)}.ri.pend{border-left-color:var(--kb)}
+.ri .rlbl{font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:6px}
+.ri .rtxt{font-size:13px;color:var(--t2);font-weight:300;line-height:1.6}
+.pl{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.pi{padding:22px}
+.pi .pn2{position:absolute;top:8px;right:16px;font-size:40px;color:rgba(255,140,66,0.06);font-weight:700}
+.pi .pt{font-size:15px;font-weight:600;color:var(--t1);margin-bottom:8px}
+.pb{background:rgba(255,140,66,0.05);border:1px solid rgba(255,140,66,0.1);border-radius:8px;padding:10px 14px}
+.pb .plbl{font-size:9px;font-weight:700;color:var(--ko);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px}
+.pb .ptxt{font-size:12px;color:var(--t2);font-weight:300;line-height:1.5}
+.audit{background:rgba(255,107,107,0.04);border:1px solid rgba(255,107,107,0.15);border-radius:12px;padding:22px;margin-bottom:28px}
+.audit .albl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--kr);margin-bottom:10px}
+.audit .afact{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.audit .afact .an{font-family:'Playfair Display',serif;font-size:20px;color:var(--kr);line-height:1;white-space:nowrap;min-width:100px}
+.audit .afact .at{font-size:11px;color:var(--t3);font-weight:300;line-height:1.4}
+.audit .atxt{font-size:12px;color:var(--t2);font-weight:300;line-height:1.7;margin-top:12px}
+.cta{text-align:center;margin-top:32px;padding:32px 22px;background:linear-gradient(135deg,rgba(96,165,250,0.07),rgba(255,140,66,0.03));border:1px solid rgba(96,165,250,0.14);border-radius:14px}
+.cta h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:6px}
+.cta h3 em{font-style:normal;color:var(--kb)}
+.cta p{font-size:13px;color:var(--t3);font-weight:300;line-height:1.7;max-width:640px;margin:0 auto}
+.ftr{text-align:center;padding:40px 0 16px;border-top:1px solid var(--bdr);margin-top:44px}
+.ftr .fl{font-family:'Playfair Display',serif;font-size:20px;color:var(--ko);margin-bottom:5px}
+.ftr p{font-size:11px;color:var(--t4);font-weight:300}
+@media(max-width:640px){.d{padding:16px 14px}.mg{grid-template-columns:repeat(2,1fr)}.fgrid,.igrid{grid-template-columns:1fr}.kfacts{grid-template-columns:repeat(2,1fr)}.audit .afact{flex-direction:column;gap:2px}}
+</style>
+</head>
+<body>
+<div class="d">
+<div class="hdr">
+<div class="badge">Devolution · Separation of Powers · Public Finance</div>
+<h1>Challenging the <em>NG-CDF: Parliament's Parallel Government</em></h1>
+<p class="sub">For over two decades, Kenya's Constituency Development Fund gave MPs direct control over hundreds of billions in public spending. Katiba Institute took this fight to court and is now taking it to the Supreme Court.</p>
+<p class="ref">Constitutional Petition 178 of 2016 · [2024] KEHC 10886 (KLR)<br>Petitioners: Wanjiru Gikonyo (TISA) &amp; Cornelius Oduor Opuot · Counsel: Katiba Institute</p>
+<div class="status-bar">
+<span class="sbar won">✅ HIGH COURT: UNCONSTITUTIONAL (Sept 2024)</span>
+<span class="sbar lost">❌ COURT OF APPEAL: REVERSED (Feb 2026)</span>
+<span class="sbar pend">⏳ SUPREME COURT: APPEAL FILED</span>
+</div>
+</div>
+<div class="tabs">
+<button class="tab on" onclick="showTab('money',this)">The Money</button>
+<button class="tab" onclick="showTab('cost',this)">Cost to Kenyans</button>
+<button class="tab" onclick="showTab('katiba',this)">Katiba's Role</button>
+<button class="tab" onclick="showTab('problem',this)">The Problem</button>
+<button class="tab" onclick="showTab('rulings',this)">The Rulings</button>
+<button class="tab" onclick="showTab('story',this)">Timeline</button>
+<button class="tab" onclick="showTab('legacy',this)">Supreme Court</button>
+</div>
+<!-- THE MONEY TAB -->
+<div class="pn on" id="money">
+<div class="bigcount">
+<div class="bclbl">Total CDF/NGCDF Allocated Since 2003</div>
+<div class="bcnum" id="counter1">KES 0</div>
+<div class="bcsub">Over half a trillion shillings channelled through 290 constituencies under direct MP influence. More than Kenya spent building the Standard Gauge Railway.</div>
+</div>
+<div class="ticker">
+<div class="tlbl">🔴 Since you opened this page, the NGCDF has spent approximately</div>
+<div class="tnum" id="liveTicker">KES 0</div>
+<div class="tsub">KES 1,773 per second · KES 153 million per day · KES 4.66 billion per month</div>
+</div>
+<h2 class="st gold">22 Years of Growth: KES 1.3 Billion to KES 55.9 Billion</h2>
+<div class="barchart" id="bars">
+<div class="barrow"><div class="barlbl">2003/04</div><div class="barwrap"><div class="barfill" data-w="2" style="background:var(--t3)"></div></div><div class="barval">KES 1.3B</div></div>
+<div class="barrow"><div class="barlbl">2004/05</div><div class="barwrap"><div class="barfill" data-w="6" style="background:var(--t3)"></div></div><div class="barval">KES 3.2B</div></div>
+<div class="barrow"><div class="barlbl">2005/06</div><div class="barwrap"><div class="barfill" data-w="10" style="background:var(--t4)"></div></div><div class="barval">KES 5.6B</div></div>
+<div class="barrow"><div class="barlbl">2006/07</div><div class="barwrap"><div class="barfill" data-w="14" style="background:var(--t4)"></div></div><div class="barval">KES 7.8B</div></div>
+<div class="barrow"><div class="barlbl">2007/08</div><div class="barwrap"><div class="barfill" data-w="18" style="background:var(--ko)"></div></div><div class="barval">KES 10.1B</div></div>
+<div class="barrow"><div class="barlbl">2008/09</div><div class="barwrap"><div class="barfill" data-w="20" style="background:var(--ko)"></div></div><div class="barval">KES 11.3B</div></div>
+<div class="barrow"><div class="barlbl">2009/10</div><div class="barwrap"><div class="barfill" data-w="22" style="background:var(--ko)"></div></div><div class="barval">KES 12.5B</div></div>
+<div class="barrow"><div class="barlbl">2010/11</div><div class="barwrap"><div class="barfill" data-w="24" style="background:var(--ko)"></div></div><div class="barval">KES 13.4B</div></div>
+<div class="barrow"><div class="barlbl">2011/12</div><div class="barwrap"><div class="barfill" data-w="28" style="background:var(--ko)"></div></div><div class="barval">KES 15.8B</div></div>
+<div class="barrow"><div class="barlbl">2012/13</div><div class="barwrap"><div class="barfill" data-w="35" style="background:var(--ko)"></div></div><div class="barval">KES 19.5B</div></div>
+<div class="barrow"><div class="barlbl">2013/14</div><div class="barwrap"><div class="barfill" data-w="41" style="background:var(--ky)"></div></div><div class="barval">KES 23.1B</div></div>
+<div class="barrow"><div class="barlbl">2015/16</div><div class="barwrap"><div class="barfill" data-w="47" style="background:var(--ky)"></div></div><div class="barval">KES 26.2B</div></div>
+<div class="barrow"><div class="barlbl">2016/17</div><div class="barwrap"><div class="barfill" data-w="63" style="background:var(--ky)"></div></div><div class="barval">KES 35.5B</div></div>
+<div class="barrow"><div class="barlbl">2018/19</div><div class="barwrap"><div class="barfill" data-w="59" style="background:var(--ky)"></div></div><div class="barval">KES 33.2B</div></div>
+<div class="barrow"><div class="barlbl">2019/20</div><div class="barwrap"><div class="barfill" data-w="75" style="background:var(--ko)"></div></div><div class="barval">KES 41.8B</div></div>
+<div class="barrow"><div class="barlbl">2023/24</div><div class="barwrap"><div class="barfill" data-w="96" style="background:var(--ko)"></div></div><div class="barval">KES 53.5B</div></div>
+<div class="barrow"><div class="barlbl">2024/25</div><div class="barwrap"><div class="barfill" data-w="98" style="background:var(--kr)"></div></div><div class="barval">KES 54.8B</div></div>
+<div class="barrow"><div class="barlbl">2025/26</div><div class="barwrap"><div class="barfill" data-w="100" style="background:var(--kr)"></div></div><div class="barval">KES 55.9B</div></div>
+</div>
+<h2 class="st purple">How NGCDF Compares to National Priorities</h2>
+<div class="compbar" id="compbars">
+<div class="comprow"><div class="comphead"><span class="cn">NGCDF Cumulative (22 yrs)</span><span class="cv">KES 522B</span></div><div class="comptrack"><div class="compfill" data-w="100" style="background:linear-gradient(90deg,var(--ko),var(--ky))"></div></div><div class="compnote">Total allocated to 290 constituencies since 2003</div></div>
+<div class="comprow"><div class="comphead"><span class="cn">Standard Gauge Railway</span><span class="cv">~KES 450B</span></div><div class="comptrack"><div class="compfill" data-w="86" style="background:var(--kp)"></div></div><div class="compnote">Kenya's most expensive infrastructure project since independence</div></div>
+<div class="comprow"><div class="comphead"><span class="cn">Counties Equitable Share (2024/25)</span><span class="cv">KES 400B</span></div><div class="comptrack"><div class="compfill" data-w="77" style="background:var(--kg)"></div></div><div class="compnote">Total sent to all 47 county governments in a single year</div></div>
+<div class="comprow"><div class="comphead"><span class="cn">Education Budget (2025/26)</span><span class="cv">KES 703B</span></div><div class="comptrack"><div class="compfill" data-w="100" style="background:var(--kb)"></div></div><div class="compnote">NGCDF cumulative = 74% of one year of education spending</div></div>
+<div class="comprow"><div class="comphead"><span class="cn">Health Budget (2025/26)</span><span class="cv">KES 138B</span></div><div class="comptrack"><div class="compfill" data-w="26" style="background:var(--kb)"></div></div><div class="compnote">NGCDF cumulative = 3.8x a full year of national health spending</div></div>
+<div class="comprow"><div class="comphead"><span class="cn">Judiciary Budget (2025/26)</span><span class="cv">KES 28.3B</span></div><div class="comptrack"><div class="compfill" data-w="5" style="background:var(--t3)"></div></div><div class="compnote">The branch deciding NGCDF's fate gets 2% of what NGCDF spent in 22 years</div></div>
+</div>
+<div class="mg">
+<div class="cb mc"><div class="ico">📈</div><div class="num" style="font-size:20px">4,200%</div><div class="lbl">Growth Since 2003</div><div class="det">KES 1.3B → KES 55.9B</div></div>
+<div class="cb mc"><div class="ico">🏘️</div><div class="num">290</div><div class="lbl">Constituencies</div><div class="det">KES 192M+ each per year</div></div>
+<div class="cb mc"><div class="ico">📊</div><div class="num">2.5%</div><div class="lbl">Of National Revenue</div><div class="det">Guaranteed minimum</div></div>
+<div class="cb mc"><div class="ico">🏗️</div><div class="num">3,087</div><div class="lbl">Schools Built</div><div class="det">26.6% of all new schools</div></div>
+<div class="cb mc"><div class="ico">🎓</div><div class="num">882K</div><div class="lbl">Students Enrolled</div><div class="det">In NGCDF schools</div></div>
+<div class="cb mc"><div class="ico">💰</div><div class="num">KES 15B</div><div class="lbl">Bursaries/Year</div><div class="det">~27% of total allocation</div></div>
+</div>
+</div>
+<!-- COST TO KENYANS TAB -->
+<div class="pn" id="cost">
+<h2 class="st red">What Half a Trillion Shillings Has Cost Kenyans</h2>
+<div class="igrid">
+<div class="cb ic" style="border-left-color:var(--kr)"><div class="ilbl" style="color:var(--kr)">THE DEVOLUTION TAX</div><div class="inum">KES 491B</div><div class="itxt">Total NGCDF allocation from 2013/14 to 2025/26, the devolution era. County governments have argued they receive less than their constitutional entitlement.</div><div class="ireal"><strong>What this costs Kenyans:</strong> Every shilling to NGCDF before vertical division is a shilling less for 47 county governments. The High Court found that in 2016, NGCDF took KES 36B when the correct share should have been KES 25B. That KES 11B gap came directly from counties. Multiply across 13 years and the cumulative loss is staggering.</div></div>
+<div class="cb ic" style="border-left-color:var(--ko)"><div class="ilbl" style="color:var(--ko)">THE PATRONAGE PREMIUM</div><div class="inum">KES 192M+ Per MP</div><div class="itxt">Average per constituency in 2025/26. Some get over KES 221M. More than entire ward budgets in many counties.</div><div class="ireal"><strong>What this costs Kenyans:</strong> An MP controls more development money than most ward reps. Bursary allocations, contractor selection, project priorities all flow through MP structures. This converts the MP's office into a patronage machine. Constituents seeking school fees or contracts must go through the MP, not the county. The Auditor General has documented how some MPs use contractors for kickbacks.</div></div>
+</div>
+<div class="audit">
+<div class="albl">🚨 What the Auditor General Has Found</div>
+<div class="afact"><div class="an">KES 1.3B</div><div class="at">Unsupported expenditure across 99 constituencies in 2023/24. No receipts, no invoices. Samburu East: KES 156M. Emurua Dikirr: KES 102.5M.</div></div>
+<div class="afact"><div class="an">KES 496M</div><div class="at">Stalled and abandoned projects across 29 constituencies. Money spent with nothing built.</div></div>
+<div class="afact"><div class="an">KES 26.7B</div><div class="at">Unutilized funds sitting idle across all 290 constituencies as of June 2024. A recurring problem year after year.</div></div>
+<div class="afact"><div class="an">Ghost students</div><div class="at">Bursaries to non-existent students. Sabatia: KES 58M claimed, KES 38M accounted for. Narok West: 675 beneficiaries with no admission numbers. Some shared numbers. Some had no names.</div></div>
+<div class="afact"><div class="an">10 of 12</div><div class="at">NGCDF-funded schools in Kimilili found structurally unsound. A classroom in Aldai unfit for habitation. Children in buildings that could collapse.</div></div>
+<div class="afact"><div class="an">KES 63M</div><div class="at">Flagged in Nakuru Town East including KES 21M in questionable security spending. In Rongo, KES 2.5M for a laboratory that was never constructed.</div></div>
+<div class="atxt">These are not isolated findings. The Auditor General has flagged similar problems year after year, across different constituencies, regions, and parties. The structural incentive for misuse is embedded in the design: 290 spending streams, each shaped by one MP, with accountability mechanisms the Auditor General has called inadequate.</div>
+</div>
+<div class="igrid">
+<div class="cb ic" style="border-left-color:var(--ky)"><div class="ilbl" style="color:var(--ky)">THE BURSARY TRAP</div><div class="inum">KES 15B/Year</div><div class="itxt">Approximately KES 15 billion annually for bursaries. The most popular and politically powerful element of NGCDF.</div><div class="ireal"><strong>What this costs Kenyans:</strong> Bursaries help real students. But the MP's office decides who gets them. In a country where education determines life trajectories, this creates dependency between constituents and their MP. It converts a constitutional right (Article 43) into a political gift. Speaker Wetang'ula has proposed consolidating all bursaries into a single body because the system is fragmented and politicized.</div></div>
+<div class="cb ic" style="border-left-color:var(--kp)"><div class="ilbl" style="color:var(--kp)">THE DUPLICATION COST</div><div class="inum">Two Parallel Systems</div><div class="itxt">NGCDF builds roads, classrooms, health facilities. Counties do the same through their development plans.</div><div class="ireal"><strong>What this costs Kenyans:</strong> Two systems in the same space, different accountability structures, no coordination. From 2017/18 to 2021/22, NGCDF built 2,102 chief's offices, 193 admin blocks, 61 KMTCs, 155 technical institutes. The Controller of Budget documented wastage from competition between MPs and governors.</div></div>
+</div>
+<div class="igrid">
+<div class="cb ic" style="border-left-color:var(--kb)"><div class="ilbl" style="color:var(--kb)">THE OPPORTUNITY COST</div><div class="inum">KES 522B Over 22 Years</div><div class="itxt">More than the SGR. More than all 47 counties received in equitable share in 2024/25. Nearly 4x the entire national health budget.</div><div class="ireal"><strong>What this costs Kenyans:</strong> If KES 522B had gone through county governments with constitutionally established planning, procurement, and oversight, accountability would be fundamentally different. Counties have assemblies, PFM Act requirements, independent auditing. NGCDF routes money through MP-influenced Project Management Committees with weaker accountability.</div></div>
+<div class="cb ic" style="border-left-color:var(--kr)"><div class="ilbl" style="color:var(--kr)">THE CONSTITUTIONAL COST</div><div class="inum">3 Laws Struck Down</div><div class="itxt">CDF 2013, AASDF 2015, NGCDF 2015 (High Court). Each time, Parliament created a replacement.</div><div class="ireal"><strong>What this costs Kenyans:</strong> If Parliament can rename its way around unconstitutionality, the rule of law is optional. Every time Parliament recreates a struck-down fund, it teaches every institution that judicial declarations can be circumvented. The 2010 Constitution was built on courts as final arbiters. If that fails here, it fails everywhere.</div></div>
+</div>
+</div>
+<!-- KATIBA'S ROLE TAB -->
+<div class="pn" id="katiba">
+<div class="krole">
+<div style="font-size:28px;margin-bottom:10px">⚖️</div>
+<div class="ktitle">Katiba Institute: Counsel in the Fight for Constitutional Fidelity</div>
+<p>Katiba Institute has been at the centre of the NGCDF challenge from the beginning, serving as <span class="khi">counsel in Constitutional Petition 178 of 2016</span>. Through its advocate <span class="khi">Waikwa Wanyoike</span>, Katiba Institute argued the case before the High Court, secured the landmark 2024 declaration of unconstitutionality, and is now pursuing the appeal at the Supreme Court.</p>
+<p>This is not an isolated case. The NGCDF challenge sits within Katiba's broader constitutional litigation strategy that has tested the boundaries of legislative power, defended devolution, and held government to the text of the 2010 Constitution across dozens of cases.</p>
+<p>What makes this case distinctive is that it challenges one of the most politically powerful institutions in Kenyan politics. All 290 MPs across every political party share a direct financial interest in the fund's survival. Taking this case forward requires the willingness to confront the entire legislature, sustained over a decade of delays, and the capacity to argue at every level of the court system.</p>
+<div class="kfacts">
+<div class="kf"><div class="kfn">10</div><div class="kfl">Years of Litigation</div></div>
+<div class="kf"><div class="kfn">3</div><div class="kfl">Court Levels</div></div>
+<div class="kf"><div class="kfn">3</div><div class="kfl">CDF Challenges</div></div>
+<div class="kf"><div class="kfn">KES 522B</div><div class="kfl">At Stake</div></div>
+</div>
+</div>
+<h2 class="st green">Katiba's Key Legal Arguments</h2>
+<div class="fgrid">
+<div class="cb fc"><div class="fi">📜</div><div class="ft">Two Unconstitutional Laws Reinforcing Each Other</div><div class="fd">Waikwa Wanyoike argued that the NGCDF Act and the Division of Revenue Act were being used to implement each other, both unconstitutional. The DRA netted NGCDF allocations from national revenue before equitable sharing, contrary to Articles 201 and 203.</div></div>
+<div class="cb fc"><div class="fi">⚖️</div><div class="ft">Revenue Netting Harms Counties Directly</div><div class="fd">Katiba demonstrated Section 4 provides for 2.5% of the national government's share, but the DRA allocated 2.5% of total national revenue before vertical division. In 2016, the fund took KES 36B when the proper calculation would have yielded KES 25B. Counties lost KES 11B in that year alone.</div></div>
+<div class="cb fc"><div class="fi">🏛️</div><div class="ft">Parliament Cannot Be Both Legislator and Executive</div><div class="fd">Katiba challenged Sections 15, 19, 23, 43, and 53, arguing they give the National Assembly executive roles: approving Board members, Committee members, and overseeing project implementation. MPs controlling constituency development spending is an executive function exercised by legislators.</div></div>
+<div class="cb fc"><div class="fi">🏘️</div><div class="ft">Devolution Means What It Says</div><div class="fd">The 2010 Constitution superseded the pre-2010 CDF logic by creating devolved governments. NGCDF reintroduces through ordinary statute a framework devolution was designed to replace, creating a parallel constituency system that competes with county functions under the Fourth Schedule.</div></div>
+</div>
+<h2 class="st gold">Katiba's Litigation Journey</h2>
+<div class="rl">
+<div class="cb ri win"><div class="rlbl" style="color:var(--kg)">MAY 2016: PETITION FILED, CONSERVATORY ORDERS SECURED</div><div class="rtxt">Katiba Institute, as counsel, filed the petition and secured conservatory orders in July 2016. Certified as raising substantial questions of law and forwarded to the Chief Justice for multi-judge bench.</div></div>
+<div class="cb ri win"><div class="rlbl" style="color:var(--kg)">SEPT 2024: HIGH COURT VICTORY ON ALL GROUNDS</div><div class="rtxt">After eight years of delays, Katiba won a comprehensive declaration that the NGCDF Act was unconstitutional in its entirety. The bench accepted arguments on separation of powers, devolution, public finance, and Senate involvement.</div></div>
+<div class="cb ri loss"><div class="rlbl" style="color:var(--kr)">FEB 2026: COURT OF APPEAL SETBACK</div><div class="rtxt">Court of Appeal reversed, finding analysis insufficient and remedy disproportionate. Only Section 43(9) severed. A setback, but the partial finding confirms the constitutional tension is real.</div></div>
+<div class="cb ri pend"><div class="rlbl" style="color:var(--kb)">FEB 2026: SAME-DAY APPEAL TO SUPREME COURT</div><div class="rtxt">On the same day, Katiba filed a notice of appeal to the Supreme Court. Ten years. Three courts. KES 522 billion. The final word on NGCDF will come from Kenya's highest court.</div></div>
+</div>
+</div>
+<!-- THE PROBLEM TAB -->
+<div class="pn" id="problem">
+<h2 class="st red">Six Constitutional Problems with the NGCDF</h2>
+<div class="fgrid">
+<div class="cb fc"><div class="fi">⚖️</div><div class="ft">Separation of Powers Violated</div><div class="fd">Section 43 establishes NGCDF Committees for every constituency, members approved by the National Assembly. MPs identify, approve, and oversee development projects. Legislators performing executive functions.</div></div>
+<div class="cb fc"><div class="fi">🏘️</div><div class="ft">Devolution Undermined</div><div class="fd">47 county governments manage local development. NGCDF creates a parallel system of 290 constituencies duplicating county functions: roads, classrooms, health facilities. Two systems, no coordination.</div></div>
+<div class="cb fc"><div class="fi">💰</div><div class="ft">Public Finance Breached</div><div class="fd">Article 203 requires equitable division between national and county governments. NGCDF funds are netted before vertical division. The DRA formula contradicts even the NGCDF Act's own text. Counties lose billions.</div></div>
+<div class="cb fc"><div class="fi">🏛️</div><div class="ft">Senate Bypassed</div><div class="fd">The Senate represents county interests. The NGCDF Act concerns counties but was enacted without Senate involvement. High Court agreed. Court of Appeal disagreed. Supreme Court will decide.</div></div>
+<div class="cb fc"><div class="fi">🔄</div><div class="ft">Pattern of Legislative Defiance</div><div class="fd">CDF 2013 struck down. Parliament created NGCDF 2015. Challenged, then amended in 2022 and 2023 preserving the same structure. Parliament treats judicial declarations as problems to rename.</div></div>
+<div class="cb fc"><div class="fi">🗳️</div><div class="ft">The Patronage Machine</div><div class="fd">Over KES 200M per constituency annually. MPs influence bursaries, contractors, project priorities. Enormous incumbent advantage. This is why dismantling it is politically explosive and why it has survived 23 years across every administration.</div></div>
+</div>
+</div>
+<!-- RULINGS TAB -->
+<div class="pn" id="rulings">
+<h2 class="st green">High Court: 20 September 2024</h2>
+<div class="rl">
+<div class="cb ri win"><div class="rlbl" style="color:var(--kg)">NGCDF ACT DECLARED UNCONSTITUTIONAL IN ITS ENTIRETY</div><div class="rtxt">Justices Kimondo, Thande, and Aburili declared the NGCDF Act 2015 (as amended 2022, 2023) unconstitutional. Violated separation of powers, undermined devolution, created overlaps, enacted without Senate input.</div></div>
+<div class="cb ri win"><div class="rlbl" style="color:var(--kg)">OPERATIONS TO CEASE BY 30 JUNE 2026</div><div class="rtxt">~20 months for transition. All NGCDF projects, programmes, and activities to cease at midnight 30 June 2026. Court recognized ongoing projects, employees, and third-party contracts.</div></div>
+<div class="cb ri win"><div class="rlbl" style="color:var(--kg)">PETITION NOT MOOT DESPITE AMENDMENTS</div><div class="rtxt">Parliament's 2022 and 2023 amendments did not render the petition moot. Fundamental constitutional defects survived cosmetic changes. Court refused to let Parliament avoid review through continuous amendment.</div></div>
+</div>
+<h2 class="st red">Court of Appeal: 6 February 2026</h2>
+<div class="rl">
+<div class="cb ri loss"><div class="rlbl" style="color:var(--kr)">HIGH COURT JUDGMENT SET ASIDE</div><div class="rtxt">Justices Musinga, Tuiyott, and Muchelule overturned the ruling. Lower court failed in constitutional analysis. Striking down the entire Act was disproportionate and inconsistent with severability.</div></div>
+<div class="cb ri loss"><div class="rlbl" style="color:var(--kr)">NGCDF DOES NOT VIOLATE DEVOLUTION</div><div class="rtxt">Court of Appeal: NGCDF is national government expenditure approved through the Appropriations Act with multiple oversight layers. Does not offend the division of functions between national and county governments.</div></div>
+<div class="cb ri loss"><div class="rlbl" style="color:var(--kr)">SENATE NOT REQUIRED</div><div class="rtxt">Senate involvement not required for the NGCDF Act. Directly contradicts the High Court. A core issue for the Supreme Court.</div></div>
+<div class="cb ri" style="border-left-color:var(--ky)"><div class="rlbl" style="color:var(--ky)">PARTIAL WIN: SECTION 43(9) SEVERED</div><div class="rtxt">Section 43(9) declared unconstitutional: tying fund manager terms to parliamentary election cycles. Even the Court of Appeal acknowledged the NGCDF engages separation of powers concerns.</div></div>
+</div>
+</div>
+<!-- TIMELINE TAB -->
+<div class="pn" id="story">
+<h2 class="st">A Decade-Long Constitutional Battle</h2>
+<div class="jy">
+<div class="js"><div class="jd"></div><div class="jp" style="color:var(--t3)">2003</div><div class="jt">CDF Born: KES 1.3B to 210 Constituencies</div><div class="jx">CDF Act 2003, initiated by Hon. Muriuki Karue's private member's Bill, allocates 2.5% of national revenue to constituencies under MP control. Each gets KES 6M.</div></div>
+<div class="js"><div class="jd gold"></div><div class="jp" style="color:var(--ky)">Feb 2015</div><div class="jt">First Victory: CDF 2013 Struck Down</div><div class="jx">Institute for Social Accountability v National Assembly: High Court declares CDF unconstitutional. Parliament responds by creating NGCDF under a new name.</div></div>
+<div class="js"><div class="jd gold"></div><div class="jp" style="color:var(--ky)">2015-2016</div><div class="jt">Second Victory: AASDF Regulations Struck Down</div><div class="jx">Wanjiru Gikonyo challenges the Affirmative Action Social Development Fund Regulations, another MP-controlled funding scheme. Struck down.</div></div>
+<div class="js"><div class="jd or"></div><div class="jp" style="color:var(--ko)">4 May 2016</div><div class="jt">Katiba Files Petition 178: The NGCDF Challenge</div><div class="jx">Gikonyo and Opuot, with Katiba Institute as counsel, file the constitutional petition. Four grounds: separation of powers, devolution, public finance, Senate involvement. Conservatory orders granted July 2016.</div></div>
+<div class="js"><div class="jd"></div><div class="jp" style="color:var(--t3)">2016-2024</div><div class="jt">Eight Years of Delays, While Billions Flow</div><div class="jx">Bench changes, deaths, transfers, stays. Over KES 300B flows through NGCDF during these eight years. Parliament amends in 2022 and 2023.</div></div>
+<div class="js"><div class="jd win"></div><div class="jp" style="color:var(--kg)">20 Sept 2024</div><div class="jt">High Court Victory: Entire NGCDF Act Unconstitutional</div><div class="jx">Justices Kimondo, Thande, Aburili rule for petitioners on every ground. Act declared unconstitutional. Operations to cease by 30 June 2026.</div></div>
+<div class="js"><div class="jd loss"></div><div class="jp" style="color:var(--kr)">6 Feb 2026</div><div class="jt">Court of Appeal Reverses: NGCDF Largely Saved</div><div class="jx">Justices Musinga, Tuiyott, Muchelule set aside High Court judgment. Only Section 43(9) severed. NGCDF Act remains in force.</div></div>
+<div class="js"><div class="jd blue"></div><div class="jp" style="color:var(--kb)">6 Feb 2026</div><div class="jt">Katiba Takes It to the Supreme Court</div><div class="jx">Same day: Katiba files notice of appeal to the Supreme Court. The final word on NGCDF's constitutionality comes from Kenya's highest court.</div></div>
+</div>
+</div>
+<!-- SUPREME COURT TAB -->
+<div class="pn" id="legacy">
+<h2 class="st blue">Four Questions for the Supreme Court</h2>
+<div class="pl">
+<div class="cb pi"><div class="pn2">01</div><div class="pt">Does the NGCDF violate separation of powers?</div><div class="pb"><div class="plbl">The Divide</div><div class="ptxt">High Court: yes. Court of Appeal: mostly no, only Section 43(9). The Supreme Court decides whether 290 MPs can administer KES 55B annually through constituency committees.</div></div></div>
+<div class="cb pi"><div class="pn2">02</div><div class="pt">Does the NGCDF undermine devolution?</div><div class="pb"><div class="plbl">The Divide</div><div class="ptxt">High Court: yes, parallel structure outside counties. Court of Appeal: no, national expenditure. The answer determines whether the 2010 Constitution's devolution promise is realized or permanently compromised.</div></div></div>
+<div class="cb pi"><div class="pn2">03</div><div class="pt">Should the Senate have been involved?</div><div class="pb"><div class="plbl">The Divide</div><div class="ptxt">High Court: yes. Court of Appeal: no. This bicameral process question has implications far beyond NGCDF for every future Bill touching county interests.</div></div></div>
+<div class="cb pi"><div class="pn2">04</div><div class="pt">Can courts strike down entire statutes or must they sever?</div><div class="pb"><div class="plbl">The Divide</div><div class="ptxt">Court of Appeal criticized striking down the entire Act. The Supreme Court will set the standard for proportionality in constitutional remedies across all future cases.</div></div></div>
+</div>
+<div class="cta">
+<h3>Katiba Institute takes this fight to <em>Kenya's highest court</em>.</h3>
+<p>Over two decades, KES 522 billion has flowed through a system giving 290 MPs direct influence over development spending. The Auditor General documents billions in waste and fraud year after year. The constitutional question is not whether the projects are good but whether the structure is lawful. Good outcomes do not cure unconstitutional processes. The Supreme Court will decide.</p>
+</div>
+</div>
+<div class="ftr">
+<div class="fl">Katiba Institute</div>
+<p>Case Impact Dashboard · Gikonyo &amp; Opuot v National Assembly &amp; Others · Constitutional Petition 178 of 2016</p>
+<p style="margin-top:8px;opacity:.6">Data: Kenya Law, NGCDF Board, Auditor General (2023/24), Daily Nation, The Standard, Parliament Budget Office, National Treasury, StatsKenya</p>
+</div>
+</div>
+<script>
+function animateVal(el,target,prefix,dur){const start=performance.now();function u(now){const p=Math.min((now-start)/dur,1);const ease=1-Math.pow(1-p,3);el.textContent=prefix+Math.floor(target*ease).toLocaleString('en-KE');if(p<1)requestAnimationFrame(u);else el.textContent=prefix+target.toLocaleString('en-KE');}requestAnimationFrame(u);}
+function animateCounter1(){animateVal(document.getElementById('counter1'),522570000000,'KES ',2800);}
+let tickerVal=0,tickerOn=false;
+function startTicker(){if(tickerOn)return;tickerOn=true;const el=document.getElementById('liveTicker');const rate=1773;let last=performance.now();function tick(now){const dt=(now-last)/1000;last=now;tickerVal+=rate*dt;el.textContent='KES '+Math.floor(tickerVal).toLocaleString('en-KE');if(tickerOn)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
+function animateBars(){document.querySelectorAll('#bars .barfill').forEach((b,i)=>{setTimeout(()=>{b.style.width=b.dataset.w+'%'},100+i*80);});}
+function animateComp(){document.querySelectorAll('#compbars .compfill').forEach((b,i)=>{setTimeout(()=>{b.style.width=b.dataset.w+'%'},200+i*180);});}
+document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{animateCounter1();animateBars();animateComp();startTicker();},400);});
+function showTab(id,btn){document.querySelectorAll('.pn').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById(id).classList.add('on');btn.classList.add('on');if(id==='money'){setTimeout(()=>{animateCounter1();animateBars();animateComp();tickerOn=false;tickerVal=0;startTicker();},200);}}
+</script>
+</body>
+</html>
